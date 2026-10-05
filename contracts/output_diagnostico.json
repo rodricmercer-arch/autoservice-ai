@@ -10,8 +10,14 @@
       "descripcion": "Desgaste severo de pastillas de freno y aire en el sistema hidráulico",
       "severidad": "urgente",
       "repuestos_requeridos": [
-        { "codigo": "REP-001", "cantidad": 2 },
-        { "codigo": "REP-002", "cantidad": 1 }
+        {
+          "codigo": "REP-001",
+          "cantidad": 2
+        },
+        {
+          "codigo": "REP-002",
+          "cantidad": 1
+        }
       ],
       "horas_mano_obra": 2.5
     }

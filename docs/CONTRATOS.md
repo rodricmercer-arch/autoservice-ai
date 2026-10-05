@@ -21,6 +21,17 @@ Si un campo cambia, se cambia primero aquí y en el JSON, nunca solo en el códi
 ## Reglas de Prolog
 - Códigos de falla en minúscula (ej. `f_frenos_01`).
 - Los códigos `REP-001` llevan comillas simples en Prolog: 'REP-001'.
+- Un síntoma puede mapear a varias fallas. `fallas_detectadas` contiene fallas únicas, en orden de primera aparición según los síntomas.
+- Criticidad global: "urgente" si alguna falla es urgente; si no, "moderada" si alguna es moderada; en cualquier otro caso (incluida lista vacía) "leve".
+- Los totales agregados (repuestos sumados y horas totales) los calcula Prolog (`obtener_repuestos_necesarios`, `calcular_horas_totales`) pero NO forman parte de `output_diagnostico.json`.
+- Base de conocimiento inicial:
+
+| síntoma | falla |
+|---|---|
+| ruido_frenos, pedal_esponjoso | f_frenos_01 (urgente, 2.5 h: REP-001 x2, REP-002 x1) |
+| vibracion_volante | f_frenos_02 (moderada, 2.0 h: REP-003 x2, REP-001 x2) y f_suspension_01 |
+| humo_escape, luz_motor_encendida | f_motor_01 (moderada, 4.0 h: REP-004 x4, REP-005 x1) |
+| ruido_suspension, vibracion_volante | f_suspension_01 (leve, 3.0 h: REP-006 x2, REP-007 x2) |
 
 ## Analítica (Python)
 - ingreso por orden = monto_repuestos + monto_mano_obra

@@ -8,5 +8,35 @@
     "codigo": "REP-002",
     "nombre": "Líquido de Frenos DOT4",
     "precio_unitario": 35.0
+  },
+    {
+    "codigo": "REP-002",
+    "nombre": "Líquido de Frenos DOT4",
+    "precio_unitario": 35.0
+  },
+  {
+    "codigo": "REP-003",
+    "nombre": "Disco de Freno Ventilado",
+    "precio_unitario": 180.0
+  },
+  {
+    "codigo": "REP-004",
+    "nombre": "Bujía de Iridio",
+    "precio_unitario": 28.0
+  },
+  {
+    "codigo": "REP-005",
+    "nombre": "Sensor de Oxígeno",
+    "precio_unitario": 150.0
+  },
+  {
+    "codigo": "REP-006",
+    "nombre": "Amortiguador Delantero",
+    "precio_unitario": 210.0
+  },
+  {
+    "codigo": "REP-007",
+    "nombre": "Buje de Suspensión",
+    "precio_unitario": 45.0
   }
 ]

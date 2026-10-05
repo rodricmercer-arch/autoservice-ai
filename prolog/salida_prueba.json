@@ -1,0 +1,58 @@
+{
+  "vehiculo_id": "V-102",
+  "sintomas_evaluados": [
+    "ruido_frenos",
+    "vibracion_volante"
+  ],
+  "fallas_detectadas": [
+    {
+      "codigo_falla": "f_frenos_01",
+      "descripcion": "Desgaste severo de pastillas de freno y aire en el sistema hidráulico",
+      "severidad": "urgente",
+      "repuestos_requeridos": [
+        {
+          "codigo": "REP-001",
+          "cantidad": 2
+        },
+        {
+          "codigo": "REP-002",
+          "cantidad": 1
+        }
+      ],
+      "horas_mano_obra": 2.5
+    },
+    {
+      "codigo_falla": "f_frenos_02",
+      "descripcion": "Discos de freno alabeados que provocan vibración al frenar",
+      "severidad": "moderada",
+      "repuestos_requeridos": [
+        {
+          "codigo": "REP-003",
+          "cantidad": 2
+        },
+        {
+          "codigo": "REP-001",
+          "cantidad": 2
+        }
+      ],
+      "horas_mano_obra": 2.0
+    },
+    {
+      "codigo_falla": "f_suspension_01",
+      "descripcion": "Desgaste de amortiguadores y bujes de suspensión",
+      "severidad": "leve",
+      "repuestos_requeridos": [
+        {
+          "codigo": "REP-006",
+          "cantidad": 2
+        },
+        {
+          "codigo": "REP-007",
+          "cantidad": 2
+        }
+      ],
+      "horas_mano_obra": 3.0
+    }
+  ],
+  "nivel_criticidad_global": "urgente"
+}
