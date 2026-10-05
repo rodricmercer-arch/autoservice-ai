@@ -41,3 +41,12 @@ Si un campo cambia, se cambia primero aquí y en el JSON, nunca solo en el códi
 - ingreso por orden = monto_repuestos + monto_mano_obra
 - `categoria_mayor_ingreso` se calcula por ingresos; el CSV no tiene costos, así que no hay margen real.
 - Leer el CSV con encoding="utf-8" (hay tildes: Transmisión, Suspensión).
+
+### Analítica extendida (Fase 3)
+- `data/ventas_reparaciones.csv` y `contracts/output_analytics.json` son el fixture de la Fase 0 y no cambian.
+- Dataset de la Fase 3: `data/ordenes_sinteticas.csv` (generado con semilla 42, 240 órdenes). Columnas: `orden_id`, `fecha`, `sede`, `categoria_servicio` (Mantenimiento | Frenos | Motor | Transmisión | Suspensión), `monto_total`, `costo_servicio`, `horas_reparacion`, `nivel_satisfaccion` (1-5).
+- Limpieza: se descartan filas sin monto/costo/categoría/sede, con monto <= 0 o `orden_id` duplicado; los nulos de `horas_reparacion` y `nivel_satisfaccion` se imputan con la mediana de su categoría; las horas atípicas (regla 1.5 x IQR por categoría, mínimo 8 filas) se ajustan al límite.
+- `margen_pct = (suma monto_total - suma costo_servicio) / suma monto_total x 100`, por categoría y global.
+- Varianza y desviación de horas: muestrales (ddof=1). Montos y porcentajes redondeados a 2 decimales HALF_UP.
+- `obtener_resumen_kpis()` devuelve las claves de `output_analytics.json` (`ingreso por orden = monto_total`) más: `margen_global_pct`, `categoria_mayor_margen`, `varianza_tiempo_horas`, `desviacion_tiempo_horas`, `correlacion_horas_satisfaccion`, `ticket_promedio_por_sede` [`sede`, `ticket_promedio`], `calidad_datos` [`filas_descartadas`, `nulos_imputados`, `atipicos_ajustados`]; y en cada elemento de `resumen_por_categoria`: `margen_pct`, `varianza_horas`, `desviacion_horas`.
+- Ejemplo de salida: `contracts/output_kpis.json`. Los gráficos se guardan en `reports/`.

@@ -1,0 +1,74 @@
+{
+  "total_ordenes_procesadas": 240,
+  "ingreso_total_acumulado": 162029.58,
+  "margen_global_pct": 30.6,
+  "promedio_ticket_orden": 675.12,
+  "categoria_mayor_ingreso": "Motor",
+  "categoria_mayor_margen": "Mantenimiento",
+  "tiempo_promedio_reparacion_horas": 3.36,
+  "varianza_tiempo_horas": 4.39,
+  "desviacion_tiempo_horas": 2.1,
+  "satisfaccion_promedio": 4.2,
+  "correlacion_horas_satisfaccion": -0.18,
+  "resumen_por_categoria": [
+    {
+      "categoria": "Motor",
+      "total_ingresos": 61689.47,
+      "margen_pct": 26.09,
+      "promedio_horas": 6.78,
+      "varianza_horas": 2.62,
+      "desviacion_horas": 1.62
+    },
+    {
+      "categoria": "Transmisión",
+      "total_ingresos": 35971.68,
+      "margen_pct": 30.3,
+      "promedio_horas": 5.09,
+      "varianza_horas": 0.53,
+      "desviacion_horas": 0.73
+    },
+    {
+      "categoria": "Frenos",
+      "total_ingresos": 25309.13,
+      "margen_pct": 34.29,
+      "promedio_horas": 2.45,
+      "varianza_horas": 0.37,
+      "desviacion_horas": 0.61
+    },
+    {
+      "categoria": "Suspensión",
+      "total_ingresos": 24949.42,
+      "margen_pct": 33.35,
+      "promedio_horas": 3.16,
+      "varianza_horas": 0.63,
+      "desviacion_horas": 0.79
+    },
+    {
+      "categoria": "Mantenimiento",
+      "total_ingresos": 14109.88,
+      "margen_pct": 39.6,
+      "promedio_horas": 1.51,
+      "varianza_horas": 0.16,
+      "desviacion_horas": 0.4
+    }
+  ],
+  "ticket_promedio_por_sede": [
+    {
+      "sede": "Lima Centro",
+      "ticket_promedio": 691.92
+    },
+    {
+      "sede": "Lima Norte",
+      "ticket_promedio": 683.85
+    },
+    {
+      "sede": "Lima Sur",
+      "ticket_promedio": 648.83
+    }
+  ],
+  "calidad_datos": {
+    "filas_descartadas": 0,
+    "nulos_imputados": 11,
+    "atipicos_ajustados": 10
+  }
+}
