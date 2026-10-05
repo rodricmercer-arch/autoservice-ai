@@ -63,6 +63,22 @@ cmp("descuento_aplicado", co["descuento_aplicado"], desc)
 cmp("base_imponible", co["base_imponible"], base)
 cmp("igv_impuesto", co["igv_impuesto"], igv)
 cmp("total_neto", co["total_neto"], total)
+for d in co["detalles_repuestos"]:
+    r = inv.get(d["codigo"])
+    if r is None:
+        errores.append(f"{d['codigo']}: no existe en el inventario")
+        continue
+    if d["nombre"] != r["nombre"]:
+        errores.append(f"{d['codigo']}.nombre: contrato={d['nombre']} inventario={r['nombre']}")
+    cmp(f"{d['codigo']}.precio_unitario", d["precio_unitario"], r["precio_unitario"])
+    cmp(f"{d['codigo']}.subtotal", d["subtotal"], r["precio_unitario"] * d["cantidad"])
+
+if co["detalles_repuestos"]:
+    mayor = max(co["detalles_repuestos"], key=lambda d: d["subtotal"])
+    if co["item_mas_costoso"]["nombre"] != mayor["nombre"]:
+        errores.append(f"item_mas_costoso: contrato={co['item_mas_costoso']['nombre']} calculado={mayor['nombre']}")
+elif co["item_mas_costoso"] is not None:
+    errores.append("item_mas_costoso debe ser null si no hay repuestos")
 
 if errores:
     print("ERRORES EN LOS CONTRATOS:")

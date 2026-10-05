@@ -1,0 +1,11 @@
+{
+  "cotizacion_id": "COT-TEST-002",
+  "vehiculo_id": "V-102",
+  "repuestos": [
+    { "codigo": "REP-001", "cantidad": 4 },
+    { "codigo": "REP-003", "cantidad": 2 },
+    { "codigo": "REP-099", "cantidad": 1 }
+  ],
+  "horas_mano_obra": 1.0,
+  "costo_hora_mano_obra": 60.0
+}

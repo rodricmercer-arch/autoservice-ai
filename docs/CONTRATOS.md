@@ -17,6 +17,10 @@ Si un campo cambia, se cambia primero aquí y en el JSON, nunca solo en el códi
 5. total_neto = base_imponible + igv_impuesto
 - Código de repuesto inexistente en inventario: va a `repuestos_no_encontrados` (usar Option), no rompe el cálculo.
 - `item_mas_costoso` se calcula solo entre repuestos (no incluye mano de obra).
+- `data/inventario_repuestos.json` tiene los campos `codigo`, `nombre`, `precio_unitario` y `stock` (entero >= 0, informativo: no afecta la cotización).
+- Cada monto (mano de obra, subtotal, descuento, base, IGV, total) se redondea a 2 decimales HALF_UP antes de usarse en el paso siguiente.
+- `item_mas_costoso` es `null` si no hay repuestos cotizados.
+- El repuesto de mayor cantidad se calcula en Scala (`obtenerMaximo(items)(_.cantidad)`) solo para el reporte de consola; no forma parte de `output_cotizacion.json`.
 
 ## Reglas de Prolog
 - Códigos de falla en minúscula (ej. `f_frenos_01`).
