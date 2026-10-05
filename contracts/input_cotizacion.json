@@ -1,0 +1,10 @@
+{
+  "cotizacion_id": "COT-2026-001",
+  "vehiculo_id": "V-101",
+  "repuestos": [
+    { "codigo": "REP-001", "cantidad": 2 },
+    { "codigo": "REP-002", "cantidad": 1 }
+  ],
+  "horas_mano_obra": 2.5,
+  "costo_hora_mano_obra": 60.0
+}

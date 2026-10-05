@@ -1,0 +1,15 @@
+{
+  "total_ordenes_procesadas": 15,
+  "ingreso_total_acumulado": 10120.0,
+  "promedio_ticket_orden": 674.67,
+  "categoria_mayor_ingreso": "Motor",
+  "tiempo_promedio_reparacion_horas": 3.48,
+  "satisfaccion_promedio": 4.33,
+  "resumen_por_categoria": [
+    { "categoria": "Motor", "total_ingresos": 4430.0, "promedio_horas": 7.0 },
+    { "categoria": "Transmisión", "total_ingresos": 1970.0, "promedio_horas": 4.75 },
+    { "categoria": "Frenos", "total_ingresos": 1955.0, "promedio_horas": 2.24 },
+    { "categoria": "Suspensión", "total_ingresos": 1180.0, "promedio_horas": 3.25 },
+    { "categoria": "Mantenimiento", "total_ingresos": 585.0, "promedio_horas": 1.33 }
+  ]
+}

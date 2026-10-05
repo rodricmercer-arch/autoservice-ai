@@ -1,0 +1,8 @@
+[
+  { "codigo": "ruido_frenos", "etiqueta": "Ruido al frenar" },
+  { "codigo": "pedal_esponjoso", "etiqueta": "Pedal de freno esponjoso" },
+  { "codigo": "vibracion_volante", "etiqueta": "Vibración en el volante" },
+  { "codigo": "humo_escape", "etiqueta": "Humo excesivo por el escape" },
+  { "codigo": "luz_motor_encendida", "etiqueta": "Luz de check engine encendida" },
+  { "codigo": "ruido_suspension", "etiqueta": "Ruidos al pasar baches" }
+]

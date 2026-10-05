@@ -1,0 +1,16 @@
+id_orden,fecha,categoria_servicio,monto_repuestos,monto_mano_obra,tiempo_horas,satisfaccion_cliente_1_5,taller_sede
+ORD-001,2026-01-05,Frenos,275.0,150.0,2.5,5,Lima Sur
+ORD-002,2026-01-06,Mantenimiento,120.0,80.0,1.5,4,Lima Norte
+ORD-003,2026-01-07,Motor,850.0,400.0,6.0,5,Lima Sur
+ORD-004,2026-01-08,Transmisión,600.0,300.0,4.5,3,Lima Centro
+ORD-005,2026-01-09,Frenos,180.0,100.0,2.0,4,Lima Sur
+ORD-006,2026-01-10,Mantenimiento,95.0,60.0,1.0,5,Lima Norte
+ORD-007,2026-01-11,Motor,1200.0,550.0,8.0,4,Lima Centro
+ORD-008,2026-01-12,Frenos,310.0,150.0,2.5,5,Lima Norte
+ORD-009,2026-01-13,Suspensión,420.0,200.0,3.5,4,Lima Sur
+ORD-010,2026-01-14,Mantenimiento,150.0,80.0,1.5,5,Lima Centro
+ORD-011,2026-01-15,Frenos,240.0,120.0,2.0,4,Lima Sur
+ORD-012,2026-01-16,Motor,950.0,480.0,7.0,3,Lima Norte
+ORD-013,2026-01-17,Suspensión,380.0,180.0,3.0,5,Lima Centro
+ORD-014,2026-01-18,Transmisión,720.0,350.0,5.0,4,Lima Sur
+ORD-015,2026-01-19,Frenos,290.0,140.0,2.2,5,Lima Norte

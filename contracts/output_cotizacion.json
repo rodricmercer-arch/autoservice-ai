@@ -1,0 +1,34 @@
+{
+  "cotizacion_id": "COT-2026-001",
+  "vehiculo_id": "V-101",
+  "moneda": "PEN",
+  "detalles_repuestos": [
+    {
+      "codigo": "REP-001",
+      "nombre": "Pastillas de Freno Cerámicas",
+      "precio_unitario": 120.0,
+      "cantidad": 2,
+      "subtotal": 240.0
+    },
+    {
+      "codigo": "REP-002",
+      "nombre": "Líquido de Frenos DOT4",
+      "precio_unitario": 35.0,
+      "cantidad": 1,
+      "subtotal": 35.0
+    }
+  ],
+  "repuestos_no_encontrados": [],
+  "costo_mano_obra": 150.0,
+  "subtotal_general": 425.0,
+  "descuento_porcentaje": 10.0,
+  "descuento_aplicado": 42.5,
+  "base_imponible": 382.5,
+  "igv_porcentaje": 18.0,
+  "igv_impuesto": 68.85,
+  "total_neto": 451.35,
+  "item_mas_costoso": {
+    "nombre": "Pastillas de Freno Cerámicas",
+    "subtotal": 240.0
+  }
+}

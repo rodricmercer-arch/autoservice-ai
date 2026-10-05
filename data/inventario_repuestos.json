@@ -1,0 +1,12 @@
+[
+  {
+    "codigo": "REP-001",
+    "nombre": "Pastillas de Freno Cerámicas",
+    "precio_unitario": 120.0
+  },
+  {
+    "codigo": "REP-002",
+    "nombre": "Líquido de Frenos DOT4",
+    "precio_unitario": 35.0
+  }
+]

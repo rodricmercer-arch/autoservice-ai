@@ -1,0 +1,8 @@
+{
+  "vehiculo_id": "V-101",
+  "placa": "ABC-123",
+  "sintomas": [
+    "ruido_frenos",
+    "pedal_esponjoso"
+  ]
+}
