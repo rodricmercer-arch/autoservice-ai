@@ -7,6 +7,7 @@ API:  from python_analytics.analytics_engine import obtener_resumen_kpis
 import argparse
 import json
 import sys
+import threading 
 from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 
@@ -267,6 +268,22 @@ def generar_graficos(df: pd.DataFrame, kpis: dict) -> list:
     grafico_eficiencia_tiempos(df, kpis, b)
     return [a, b]
 
+# ---- Fase 4: usada por la API (extension compatible, no altera funciones previas) ----
+_LOCK_GRAFICOS = threading.Lock()  # matplotlib no es thread-safe
+
+
+def obtener_kpis_y_graficos(ruta_csv: str = RUTA_CSV_DEFECTO) -> dict:
+    """KPIs (esquema de contracts/output_kpis.json) + rutas web de los PNG de reports/."""
+    with _LOCK_GRAFICOS:
+        df, kpis = _procesar(ruta_csv)
+        a, b = generar_graficos(df, kpis)
+    return {
+        "kpis": kpis,
+        "graficos": {
+            "ingresos_categoria": f"/reports/{a.name}",
+            "eficiencia_tiempos": f"/reports/{b.name}",
+        },
+    }
 
 # ============================================================
 # 5. Reporte de consola + ejecucion standalone
@@ -321,3 +338,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+    
