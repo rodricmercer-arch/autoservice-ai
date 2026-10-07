@@ -4,6 +4,7 @@
 import java.nio.charset.StandardCharsets.UTF_8
 import java.nio.file.{Files, Path, Paths}
 import scala.math.BigDecimal.RoundingMode
+import scala.util.Try
 
 object AutoServiceEngine {
 
@@ -26,6 +27,13 @@ object AutoServiceEngine {
       igvImpuesto: Double,
       totalNeto: Double
   )
+
+    // ===== Entidades de registro (solo consola; NO forman parte del contrato JSON) =====
+  case class Usuario(usuarioId: String, nombre: String, correo: String)
+  case class Vehiculo(vehiculoId: String, placa: Option[String], sintomas: List[String])
+
+  // Datos de demostración: reemplaza por los tuyos antes de la captura del informe.
+  val UsuarioDemo: Usuario = Usuario("U-001", "Cliente de ejemplo", "cliente@example.com")
 
   // ===== Constantes de negocio (docs/CONTRATOS.md) =====
   val UmbralDescuento: Double = 400.0
@@ -182,6 +190,48 @@ object AutoServiceEngine {
       )
   }
 
+
+  // ===== Registro de usuario/vehículo y severidad (solo modo consola) =====
+  def leerJsonOpcional(ruta: Path): Option[ujson.Value] =
+    Try(ujson.read(Files.readString(ruta, UTF_8))).toOption
+
+  // Placa y síntomas salen de contracts/input_sintomas.json solo si es el mismo vehículo.
+  def cargarVehiculo(raiz: Path, vehiculoId: String): Vehiculo = {
+    val datos = leerJsonOpcional(raiz.resolve("contracts").resolve("input_sintomas.json"))
+      .filter(j => Try(j("vehiculo_id").str).toOption.contains(vehiculoId))
+    Vehiculo(
+      vehiculoId,
+      datos.flatMap(j => Try(j("placa").str).toOption),
+      datos.flatMap(j => Try(j("sintomas").arr.toList.map(_.str)).toOption).getOrElse(Nil)
+    )
+  }
+
+  def cargarCriticidad(raiz: Path, vehiculoId: String): Option[String] =
+    leerJsonOpcional(raiz.resolve("contracts").resolve("output_diagnostico.json"))
+      .filter(j => Try(j("vehiculo_id").str).toOption.contains(vehiculoId))
+      .flatMap(j => Try(j("nivel_criticidad_global").str).toOption)
+
+  def evaluarSeveridad(criticidad: Option[String]): String = criticidad match {
+    case Some("urgente")  => "URGENTE - atender de inmediato, el vehículo no debería circular"
+    case Some("moderada") => "MODERADA - programar la reparación en los próximos días"
+    case Some("leve")     => "LEVE - puede esperar al siguiente mantenimiento"
+    case Some(otra)       => s"Criticidad no reconocida: $otra"
+    case None             => "Sin diagnóstico disponible para este vehículo"
+  }
+
+  def mostrarRegistro(u: Usuario, v: Vehiculo, criticidad: Option[String]): List[String] = {
+    val placa      = v.placa.getOrElse("N/D")
+    val sintomasTx = if (v.sintomas.isEmpty) "(sin registrar)" else v.sintomas.mkString(", ")
+    List(
+      "=== REGISTRO DE USUARIO Y VEHÍCULO ===",
+      f"  Usuario    : ${u.nombre}%-24s (ID ${u.usuarioId}, ${u.correo})",
+      f"  Vehículo   : ${v.vehiculoId}%-24s Placa: $placa%s",
+      s"  Síntomas   : $sintomasTx",
+      s"  Criticidad : ${evaluarSeveridad(criticidad)}"
+    )
+  }
+
+
   // ===== Punto de entrada =====
   // args: [raiz] [entrada] [salida]  (rutas de entrada/salida relativas a la raíz)
   def main(args: Array[String]): Unit = {
@@ -208,8 +258,17 @@ object AutoServiceEngine {
       entrada("horas_mano_obra").num
     )
 
-    Files.writeString(rutaSalida, aJson(cotizacion) + "\n", UTF_8)
-    reporteConsola(cotizacion, inventarioRepuestos).foreach(println)
-    println(s"OK: ${rutaSalida}")
+        if (args.nonEmpty) {
+      // Modo CLI (ejecutar_cotizacion.py / FastAPI): solo el JSON del contrato.
+      Files.writeString(rutaSalida, aJson(cotizacion) + "\n", UTF_8)
+      println(s"OK: ${rutaSalida}")
+    } else {
+      // Modo consola (scala-cli run scala/): reporte visual; no escribe contratos.
+      val vehiculo   = cargarVehiculo(raiz, cotizacion.vehiculoId)
+      val criticidad = cargarCriticidad(raiz, cotizacion.vehiculoId)
+      val lineas = mostrarRegistro(UsuarioDemo, vehiculo, criticidad) ++ List("") ++
+        reporteConsola(cotizacion, inventarioRepuestos)
+      lineas.foreach(println)
+    }
   }
 }
